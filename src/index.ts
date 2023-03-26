@@ -1,10 +1,32 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response } from "express";
+import { incrementCounter, readCounterFromFile } from "./lib/apiCounter";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World');
+let currentApiCount = readCounterFromFile();
+
+app.get("/hello", (req: Request, res: Response) => {
+  currentApiCount = incrementCounter(currentApiCount);
+
+  const currentTime = new Date().toLocaleTimeString();
+  res.send(`Hello world, the time is currently ${currentTime}.`);
+});
+
+app.get("/health", (req: Request, res: Response) => {
+  res.status(204).send();
+});
+
+app.get("/metadata", (req: Request, res: Response) => {
+  currentApiCount = incrementCounter(currentApiCount);
+
+  const commitHash = process.env.COMMIT_HASH || "DEV";
+  const payload = {
+    commitHash,
+    currentApiCount,
+  };
+
+  res.json(payload);
 });
 
 app.listen(PORT, () => {
