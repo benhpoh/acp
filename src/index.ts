@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { incrementCounter, readCounterFromFile } from "./lib/apiCounter";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.NODE_ENV === "PROD" ? process.env.PORT : 3000;
 
 let currentApiCount = readCounterFromFile();
 

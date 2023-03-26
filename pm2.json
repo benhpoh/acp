@@ -1,0 +1,10 @@
+{
+    "name": "acp-api",
+    "script": "dist/index.js",
+    "env": {
+        "NODE_ENV": "TEST",
+        "PORT": "3000",
+        "COMMIT_HASH": "75e6b26b21f404b05c5e0646de06e7c7271f5cb2"
+    },
+    "instances": 1
+}
