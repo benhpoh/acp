@@ -4,10 +4,12 @@
   "description": "ACP Web API",
   "main": "src/index.ts",
   "scripts": {
-    "start": "tsc && node dist/index.js",
-    "test": "tsc && npm run test:start && npx jest && npm run test:stop",
+    "start": "node dist/index.js",
+    "dev": "npm run build && node dist/index.js",
+    "test": "npm run build && npm run test:start && npx jest && npm run test:stop",
     "test:start": "npx pm2 start pm2.json",
-    "test:stop": "npx pm2 stop pm2.json"
+    "test:stop": "npx pm2 stop pm2.json",
+    "build": "tsc"
   },
   "author": "Ben Poh",
   "license": "ISC",

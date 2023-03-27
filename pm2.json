@@ -4,7 +4,7 @@
     "env": {
         "NODE_ENV": "TEST",
         "PORT": "3000",
-        "COMMIT_HASH": "75e6b26b21f404b05c5e0646de06e7c7271f5cb2"
+        "COMMIT_HASH": "TEST_HASH"
     },
     "instances": 1
 }

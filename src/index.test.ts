@@ -59,7 +59,7 @@ describe("API Routes", () => {
 
     it("should contain commit hash from env variable object", async () => {
       const res = await axios.get(`${BASE_URL}/metadata`);
-      expect(res.data.commitHash).toEqual("75e6b26b21f404b05c5e0646de06e7c7271f5cb2");
+      expect(res.data.commitHash).toEqual("TEST_HASH");
     });
 
     it("should increment api counter", async () => {
