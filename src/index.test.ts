@@ -226,5 +226,18 @@ describe("API Routes", () => {
       expect(res.data.limits["cpu(mCores)"]).toBe(40500);
       expect(res.data.error).toBeUndefined
     });
+
+    it("should increment api counter", async () => {
+      const metadataRes = await axios.get(`${BASE_URL}/metadata`);
+      const baseCount = metadataRes.data.currentApiCount;
+
+      await axios.post(`${BASE_URL}/calculate?appName=alertmanager`, payload);
+
+      const metadataRes2 = await axios.get(`${BASE_URL}/metadata`);
+      const newCount = metadataRes2.data.currentApiCount;
+      const additionalApiRequestsCount = 2;
+
+      expect(newCount).toEqual(baseCount + additionalApiRequestsCount);
+    });
   });
 });
