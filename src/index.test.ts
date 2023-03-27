@@ -200,31 +200,46 @@ describe("API Routes", () => {
     it("should calculate recommendation on single app payload", async () => {
       const res = await axios.post(`${BASE_URL}/calculate?appName=alertmanager`, payload);
       expect(res.status).toBe(200)
-      expect(res.data.requests["memory(MiB)"]).toBe(500);
-      expect(res.data.limits["memory(MiB)"]).toBe(500);
-      expect(res.data.requests["cpu(mCores)"]).toBe(1500);
-      expect(res.data.limits["cpu(mCores)"]).toBe(2000);
-      expect(res.data.error).toBeUndefined
+      expect(res.data).toEqual({
+        requests: {
+          "memory(MiB)": 500,
+          "cpu(mCores)": 1500,
+        },
+        limits: {
+          "memory(MiB)": 500,
+          "cpu(mCores)": 2000,
+        },
+      });
     });
 
     it("should calculate grafana recommendation on multi app payload", async () => {
       const res = await axios.post(`${BASE_URL}/calculate?appName=grafana`, multiAppPayload);
       expect(res.status).toBe(200)
-      expect(res.data.requests["memory(MiB)"]).toBe(500);
-      expect(res.data.limits["memory(MiB)"]).toBe(500);
-      expect(res.data.requests["cpu(mCores)"]).toBe(1000);
-      expect(res.data.limits["cpu(mCores)"]).toBe(1500);
-      expect(res.data.error).toBeUndefined
+      expect(res.data).toEqual({
+        requests: {
+          "memory(MiB)": 500,
+          "cpu(mCores)": 1000,
+        },
+        limits: {
+          "memory(MiB)": 500,
+          "cpu(mCores)": 1500,
+        },
+      });
     });
 
     it("should calculate prometheus recommendation on multi app payload", async () => {
       const res = await axios.post(`${BASE_URL}/calculate?appName=prometheus`, multiAppPayload);
       expect(res.status).toBe(200)
-      expect(res.data.requests["memory(MiB)"]).toBe(5000);
-      expect(res.data.limits["memory(MiB)"]).toBe(5500);
-      expect(res.data.requests["cpu(mCores)"]).toBe(36500);
-      expect(res.data.limits["cpu(mCores)"]).toBe(40500);
-      expect(res.data.error).toBeUndefined
+      expect(res.data).toEqual({
+        requests: {
+          "memory(MiB)": 5000,
+          "cpu(mCores)": 36500,
+        },
+        limits: {
+          "memory(MiB)": 5500,
+          "cpu(mCores)": 40500,
+        },
+      });
     });
 
     it("should increment api counter", async () => {
