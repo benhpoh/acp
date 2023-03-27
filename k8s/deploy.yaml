@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acp
+  labels:
+    app: acp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: acp
+  template:
+    metadata:
+      labels:
+        app: acp
+    spec:
+      containers:
+      - name: acp
+        image: ghcr.io/${IMAGE_NAME}:main
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".1"
+            memory: ".1Gi"
+          limits:
+            cpu: ".1"
+            memory: ".1Gi"
+        ports:
+        - containerPort: 3000
