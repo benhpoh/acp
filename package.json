@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "npm run build && node dist/index.js",
-    "test": "npm run build && npm run test:start && npx jest && npm run test:stop",
+    "test": "npm run build:test && npm run test:start && npx jest && npm run test:stop",
     "test:start": "npx pm2 start pm2.json",
     "test:stop": "npx pm2 stop pm2.json",
-    "build": "tsc"
+    "build": "tsc",
+    "build:test": "tsc --project tsconfig.test.json"
   },
   "author": "Ben Poh",
   "license": "ISC",
@@ -17,14 +18,15 @@
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
-    "@types/express": "^4.17.17",
     "@types/jest": "^29.5.0",
-    "@types/node": "^18.15.10",
     "axios": "^1.3.4",
     "jest": "^29.5.0",
     "pm2": "^5.3.0"
   },
   "dependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.10",
     "body-parser": "^1.20.2",
     "express": "^4.18.2"
   }
