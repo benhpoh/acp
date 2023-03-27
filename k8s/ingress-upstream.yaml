@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-upstream
+  labels:
+    app: ingress-upstream
+spec:
+  selector:
+    app: acp
+  ports:
+    - name: 80-to-3000
+      protocol: TCP
+      port: 80
+      targetPort: 3000
