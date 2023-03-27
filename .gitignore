@@ -39,3 +39,6 @@ dist/**/*
 
 # Ignore counter file
 counter.txt
+
+# Ignore metrics-input.json
+metrics-input.json
