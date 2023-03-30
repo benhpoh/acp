@@ -1,9 +1,11 @@
 name: Deploy to Section
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Run tests"]
     branches: [main]
-  workflow_dispatch:
+    types:
+      - completed
 
 env:
   REGISTRY: ghcr.io
